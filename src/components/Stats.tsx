@@ -1,15 +1,30 @@
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 
-const stats = [
+interface Stat {
+  value: number
+  suffix?: string
+  label: string
+  text?: string
+  small?: boolean
+}
+
+const stats: Stat[] = [
   { value: 250, suffix: '+', label: 'Weddings Hosted' },
   { value: 8, suffix: '+', label: 'Years Experienced' },
   { value: 100, suffix: '%', label: 'Happy Couples' },
   { value: 0, text: 'WORLDWIDE', label: 'Coverage Area', small: true },
 ]
 
-function AnimatedCounter({ value, suffix, text, duration = 2.5 }) {
-  const ref = useRef(null)
+interface AnimatedCounterProps {
+  value: number
+  suffix?: string
+  text?: string
+  duration?: number
+}
+
+function AnimatedCounter({ value, suffix, text, duration = 2.5 }: AnimatedCounterProps) {
+  const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: '-50px' })
   const count = useMotionValue(0)
   const rounded = useTransform(count, (latest) => Math.round(latest))

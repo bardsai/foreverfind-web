@@ -1,15 +1,8 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-// const perks = [
-//   'Free initial consultation',
-//   'Customised to your culture and vision',
-//   'Available in Nigeria and the UK',
-//   'Response within 24 hours',
-// ]
-
 export default function Booking() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   const inputClass = "bg-white border border-[#C9A84C]/30 rounded text-sm text-[#1C1410] px-3.5 py-2.5 outline-none focus:border-[#9B6FB5] focus:ring-2 focus:ring-[#5C2E6E]/10 transition-all font-['DM_Sans'] w-full"
@@ -30,14 +23,6 @@ export default function Booking() {
           <p className="text-[#7A7069] text-sm leading-relaxed">
             Planning your wedding? Let's make your special day unforgettable. Fill in the form and we'll get back to you within 24 hours.
           </p>
-          {/* <div className="mt-7 flex flex-col gap-3.5">
-            {perks.map(p => (
-              <div key={p} className="flex items-center gap-3 text-sm text-[#1C1410]">
-                <div className="w-2 h-2 rounded-full bg-[#C9A84C] flex-shrink-0" />
-                {p}
-              </div>
-            ))}
-          </div> */}
         </motion.div>
 
         <motion.div

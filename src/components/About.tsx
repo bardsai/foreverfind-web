@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion'
 import host from '../assets/host.jpg'
 
 export default function About() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (

@@ -1,7 +1,12 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 
-const faqs = [
+interface FAQItem {
+  q: string
+  a: string
+}
+
+const faqs: FAQItem[] = [
   {
     q: 'Do you host only Yoruba weddings?',
     a: 'We specialise in hosting a wide range of culturally rich and vibrant celebrations, including Yoruba traditional weddings, intertribal unions, interracial traditional ceremonies, as well as elegant wedding receptions. As experienced Masters of Ceremony, we bring energy, structure, and cultural authenticity to every event, ensuring each moment flows seamlessly while keeping guests engaged and entertained throughout.',
@@ -17,8 +22,8 @@ const faqs = [
 ]
 
 export default function FAQ() {
-  const [open, setOpen] = useState(null)
-  const ref = useRef(null)
+  const [open, setOpen] = useState<number | null>(null)
+  const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (

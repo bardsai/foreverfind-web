@@ -1,7 +1,15 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-const testimonials = [
+interface Testimonial {
+  quote: string
+  name: string
+  detail: string
+  initials: string
+  bg: string
+}
+
+const testimonials: Testimonial[] = [
   {
     quote: "She made our wedding ceremony organised and lively. Our families loved how she respected Yoruba traditions while keeping the energy high throughout.",
     name: "Tunde & Chloe",
@@ -26,7 +34,7 @@ const testimonials = [
 ]
 
 export default function Testimonials() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (

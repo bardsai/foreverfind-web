@@ -5,7 +5,7 @@ const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.7, delay, ease: 'easeOut' }
-})
+} as const)
 
 const HeroContent = () => (
   <div className="relative z-10 max-w-3xl mx-auto px-6">

@@ -1,9 +1,15 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { HugeiconsIcon } from '@hugeicons/react';
+import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react';
 import { WeddingIcon, Mic01Icon, Calendar03Icon } from '@hugeicons/core-free-icons';
 
-const services = [
+interface Service {
+  title: string
+  desc: string
+  icon: IconSvgElement
+}
+
+const services: Service[] = [
   {
     title: 'Traditional Wedding Hosting',
     desc: 'Professional coordination of Yoruba engagement ceremonies including bride introduction, cultural rites and family protocols.',
@@ -22,7 +28,7 @@ const services = [
 ]
 
 export default function Services() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (

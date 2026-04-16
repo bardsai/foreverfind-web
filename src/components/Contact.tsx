@@ -1,6 +1,14 @@
 import { motion } from 'framer-motion'
+import { ReactNode } from 'react'
 
-const contacts = [
+interface ContactItem {
+  label: string
+  value: string
+  href?: string
+  icon: ReactNode
+}
+
+const contacts: ContactItem[] = [
   {
     label: 'Call Us On',
     value: '+44 7423 243282',
