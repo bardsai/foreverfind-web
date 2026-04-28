@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const links = [
@@ -14,7 +14,7 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
+  // const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -31,7 +31,7 @@ export default function Navbar() {
     return () => { document.body.style.overflow = 'unset' }
   }, [menuOpen])
 
-  const isHomePage = location.pathname === '/'
+  // const isHomePage = location.pathname === '/'
 
   return (
     <>
