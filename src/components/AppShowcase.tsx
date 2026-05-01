@@ -1,171 +1,257 @@
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
-import { Download03Icon, Apple, Heart, Message02FreeIcons, Shield02Icon } from '@hugeicons/core-free-icons'
+import { Heart, Shield02Icon, ZapIcon } from '@hugeicons/core-free-icons'
 
 interface Feature {
   title: string
   desc: string
   icon: IconSvgElement
+  tag: string
 }
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 28 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: 'easeOut' }
-} as const)
 
 const features: Feature[] = [
   {
-    title: 'Smart Matching',
-    desc: 'AI-powered matching algorithm to find your perfect connection based on interests and values.',
+    title: 'High-End Matchmaking',
+    desc: 'Personalized services for local and international individuals seeking meaningful, lasting relationships that lead to marriage.',
     icon: Heart,
+    tag: 'Global Reach',
   },
   {
-    title: 'Real-time Chat',
-    desc: 'Instant messaging with rich media support for meaningful conversations.',
-    icon: Message02FreeIcons,
+    title: 'Tech Meets Tradition',
+    desc: 'We blend computer-based algorithms with traditional methods to understand your goals, values, and unique preferences.',
+    icon: ZapIcon,
+    tag: 'Hybrid Approach',
   },
   {
-    title: 'Safety First',
-    desc: 'Built-in safety features and comprehensive privacy controls.',
+    title: 'Discretion & Quality',
+    desc: 'A premium, time-saving experience for busy professionals that goes beyond algorithms with a focus on absolute confidentiality.',
     icon: Shield02Icon,
+    tag: 'Premium Discretion',
   },
 ]
 
 const downloadLinks = [
-  {
-    platform: 'iOS',
-    icon: Apple,
-    url: 'https://apps.apple.com/app/foreverfind',
-  },
-  {
-    platform: 'Android',
-    icon: Download03Icon,
-    url: 'https://play.google.com/store/apps/details?id=com.foreverfind',
-  },
+  { platform: 'iOS', icon: '/apple-store-svgrepo-com.svg', url: '#' },
+  { platform: 'Android', icon: '/google-play-svgrepo-com.svg', url: '#' },
 ]
 
 export default function AppShowcase() {
-  const ref = useRef<HTMLElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const containerRef = useRef<HTMLElement>(null)
+  const inView = useInView(containerRef, { once: false, margin: '-10% 0px -10% 0px' })
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 150])
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
 
   return (
-    <section id="app" className="py-24 px-[5%] bg-[#FDFAF6]" ref={ref}>
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-20">
-          <motion.div {...fadeUp(0.1)}
-            className="inline-block border border-[#C9A84C]/50 text-[#8B6A1F] text-xs tracking-[0.18em] uppercase px-4 py-1.5 rounded-sm mb-6"
-          >
-            Download Forever Find App
-          </motion.div>
+    <section
+      id="app"
+      ref={containerRef}
+      className="py-32 px-[5%] bg-[#FDFAF6] font-['Jost',sans-serif] overflow-hidden relative"
+    >
+      {/* Abstract Background Patterns */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at center, #C9A84C 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
 
-          <motion.h1 {...fadeUp(0.25)}
-            className="font-display text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.15] text-[#1C1410] mb-6"
-          >
-            Connect with
-            <br />
-            <em className="text-[#5C2E6E]">Meaningful</em> People
-          </motion.h1>
+      <div className="max-w-7xl mx-auto">
 
-          <motion.p {...fadeUp(0.38)}
-            className="text-[#7A7069] leading-relaxed text-sm mb-10"
+        {/* Editorial Hero Section */}
+        <div className="grid lg:grid-cols-2 gap-20 items-center mb-32">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Experience genuine connections through our intuitive dating platform. Meet people who share your values and interests with our AI-powered matching system.
-          </motion.p>
+            <div className="flex items-center gap-3 mb-8">
+              <span className="w-12 h-px bg-[#C9A84C]" />
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#C9A84C] font-semibold">Sophisticated Forever Find</span>
+            </div>
 
-          <motion.div {...fadeUp(0.5)} className="flex gap-4 justify-center flex-wrap">
-            {downloadLinks.map((link) => (
-              <a
-                key={link.platform}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#C9A84C] text-[#1C1410] font-medium px-7 py-3 rounded text-sm tracking-wide hover:bg-[#F0DEBB] hover:-translate-y-0.5 transition-all duration-200 shadow-lg shadow-[#C9A84C]/20"
-              >
-                <HugeiconsIcon icon={link.icon} width={16} height={16} />
-                Download on {link.platform}
+            <h1 className="font-['Cormorant_Garamond',serif] text-[clamp(3rem,8vw,5rem)] font-light leading-none text-[#1C1410] mb-10 tracking-tight">
+              Finding Your <br />
+              <em className="italic text-[#C9A84C]">Ideal Partner</em>
+            </h1>
+
+            <p className="text-[#7A7069] text-lg font-light leading-relaxed mb-12 max-w-xl">
+              Whether you’re a busy professional or someone looking for a more personal touch in relationships, we’re here to guide you toward a meaningful union through a blend of heritage and innovation.
+            </p>
+
+            <div className="flex flex-wrap gap-5">
+              <a href="#registration" className="bg-[#1C1410] text-[#FDFAF6] px-10 py-5 rounded-sm text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-[#C9A84C] transition-all duration-500 shadow-2xl shadow-[#1C1410]/20">
+                Start Your Story
               </a>
+              <div className="flex gap-4">
+                {downloadLinks.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    className="group w-14 h-14 border border-[#C9A84C]/30 rounded-full flex items-center justify-center text-[#1C1410] hover:bg-[#C9A84C] hover:text-[#FDFAF6] transition-all duration-500"
+                    aria-label={`Download for ${link.platform}`}
+                  >
+                    <img
+                      src={link.icon}
+                      alt={link.platform}
+                      className="w-10 h-10 transition-all duration-500 group-hover:brightness-0 group-hover:invert opacity-70 group-hover:opacity-100"
+                      style={{ filter: 'brightness(0) saturate(100%) invert(8%) sepia(12%) peachpuff(15%)' }} // Attempting a charcoal-like filter for default
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="relative">
+            {/* Primary Integrated Image */}
+            <motion.div
+              style={{ scale: imgScale }}
+              className="relative rounded-sm overflow-hidden"
+            >
+              <img
+                src="/foreverfind.jpeg"
+                alt="Celebration of Union"
+                className="w-full h-auto object-contain"
+              />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Feature Grid with Overlapping Image */}
+        <div className="relative mb-32">
+          <div className="grid lg:grid-cols-3 gap-8 relative z-10">
+            {features.map((feature, i) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="bg-white/80 backdrop-blur-md border border-[#C9A84C]/40 rounded-sm p-12 hover:border-[#C9A84C] transition-all duration-500 group"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#FDFAF6] border border-[#C9A84C]/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-700">
+                  <HugeiconsIcon icon={feature.icon} width={24} height={24} className="text-[#1C1410]" />
+                </div>
+                <p className="text-[9px] uppercase tracking-[0.3em] text-[#C9A84C] mb-4 font-bold">{feature.tag}</p>
+                <h3 className="font-['Cormorant_Garamond',serif] text-3xl text-[#1C1410] mb-6 tracking-tight leading-none">{feature.title}</h3>
+                <p className="text-[14.5px] font-light text-[#7A7069] leading-relaxed">{feature.desc}</p>
+              </motion.div>
             ))}
+          </div>
+
+          {/* Secondary Overlapping Image */}
+          <motion.div
+            style={{ y: y2 }}
+            className="absolute -top-24 -left-24 w-64 aspect-square rounded-sm overflow-hidden border border-[#C9A84C]/20 shadow-2xl -z-10 hidden xl:block"
+          >
+            <img
+              src="/foreverfind-2.jpeg"
+              alt="Lifestyle Detail"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-20">
-          {features.map((feature, i) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 28 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.12 }}
-              whileHover={{ y: -6, boxShadow: '0 16px 40px rgba(92,46,110,0.12)' }}
-              className="bg-[#FDFAF6] border border-[#C9A84C]/20 rounded-sm p-8 relative overflow-hidden"
-            >
-              <div className="absolute top-0 left-0 right-0 h-0.75 bg-linear-to-r from-[#5C2E6E] to-[#C9A84C]" />
-              <div className="w-11 h-11 rounded-full bg-[#EDE0F5] flex items-center justify-center mb-5">
-                <HugeiconsIcon icon={feature.icon} width={20} height={20} className="text-[#5C2E6E]" />
-              </div>
-              <h3 className="font-display text-xl font-medium text-[#1C1410] mb-3">{feature.title}</h3>
-              <p className="text-sm text-[#7A7069] leading-relaxed">{feature.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+        {/* Integrated Registration & CTA Section */}
+        <section id="registration" className="mt-32 bg-[#1C1410] rounded-sm relative overflow-hidden">
+          {/* Abstract pattern overlay */}
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(circle at center, #C9A84C 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
 
-        {/* Phone Mockup */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-block relative">
-            <div className="relative w-64 h-96 rounded-3xl bg-linear-to-br from-[#5C2E6E] to-[#7C309C] p-2 shadow-2xl">
-              {/* Phone bezel */}
-              <div className="w-full h-full rounded-3xl bg-[#1C1410] overflow-hidden shadow-inner flex items-center justify-center">
-                {/* Screen content */}
-                <div className="w-full h-full bg-linear-to-b from-[#FDFAF6] to-[#F5EFE7] flex flex-col items-center justify-center px-6 text-center">
-                  <div className="text-5xl mb-3">💕</div>
-                  <h4 className="font-display text-[#5C2E6E] font-medium text-lg mb-1">Forever Find</h4>
-                  <p className="text-xs text-[#9B8FA8]">Genuine Connections</p>
+          <div className="relative z-10 p-12 md:p-24">
+            <div className="text-center mb-20">
+              <h2 className="font-['Cormorant_Garamond',serif] text-[clamp(2.5rem,5vw,4rem)] font-light text-white mb-4 leading-tight">
+                Looking for <em className="italic text-[#C9A84C]">True Love</em>
+              </h2>
+              <p className="text-white/60 font-light tracking-wide max-w-2xl mx-auto">
+                Kindly fill out the form below and our matchmakers will reach out to you to begin your journey.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-20 items-center max-w-6xl mx-auto">
+              {/* Form Image Visual */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="relative rounded-sm overflow-hidden shadow-2xl border border-[#C9A84C]/20"
+              >
+                <img
+                  src="/foreverfind-2.jpeg"
+                  alt="Proposal"
+                  className="w-full object-contain brightness-75"
+                />
+              </motion.div>
+
+              {/* The Actual Form */}
+              <motion.form
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <label className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">Name <span className="text-[#C9A84C]">*</span></label>
+                    <input type="text" required className="w-full bg-white/3 border border-white/10 rounded-sm px-4 py-4 text-sm text-white focus:outline-none focus:border-[#C9A84C] transition-all placeholder:text-white/20" placeholder="Full Name" />
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">Email <span className="text-[#C9A84C]">*</span></label>
+                    <input type="email" required className="w-full bg-white/3 border border-white/10 rounded-sm px-4 py-4 text-sm text-white focus:outline-none focus:border-[#C9A84C] transition-all placeholder:text-white/20" placeholder="Email Address" />
+                  </div>
                 </div>
-              </div>
-              {/* Phone notch */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-7 bg-[#1C1410] rounded-b-3xl"></div>
+
+                <div className="space-y-3">
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">WhatsApp Number <span className="text-[#C9A84C]">*</span></label>
+                  <input type="tel" required className="w-full bg-white/3 border border-white/10 rounded-sm px-4 py-4 text-sm text-white focus:outline-none focus:border-[#C9A84C] transition-all placeholder:text-white/20" placeholder="+123 456 7890" />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <label className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">Gender <span className="text-[#C9A84C]">*</span></label>
+                    <div className="relative">
+                      <select required className="w-full bg-white/3 border border-white/10 rounded-sm px-4 py-4 text-sm text-white focus:outline-none focus:border-[#C9A84C] transition-all appearance-none cursor-pointer">
+                        <option value="" className="bg-[#1C1410]">Select Gender</option>
+                        <option value="male" className="bg-[#1C1410]">Male</option>
+                        <option value="female" className="bg-[#1C1410]">Female</option>
+                      </select>
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#C9A84C]">↓</div>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">Service <span className="text-[#C9A84C]">*</span></label>
+                    <div className="relative">
+                      <select required className="w-full bg-white/3 border border-white/10 rounded-sm px-4 py-4 text-sm text-white focus:outline-none focus:border-[#C9A84C] transition-all appearance-none cursor-pointer">
+                        <option value="" className="bg-[#1C1410]">Select Service</option>
+                        <option value="whatsapp" className="bg-[#1C1410]">WhatsApp Group</option>
+                        <option value="matchmaking" className="bg-[#1C1410]">Personal Matchmaking</option>
+                      </select>
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#C9A84C]">↓</div>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" className="w-full bg-[#C9A84C] text-[#100B07] py-5 rounded-sm text-[11px] font-bold tracking-[0.3em] uppercase hover:bg-white transition-all duration-500 mt-4 shadow-2xl shadow-[#C9A84C]/20">
+                  Submit Registration
+                </button>
+              </motion.form>
             </div>
           </div>
-        </motion.div>
 
-        {/* Final CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="bg-[#F7F2EC] border border-[#C9A84C]/20 rounded-sm p-12 text-center relative overflow-hidden"
-        >
-          <div className="absolute top-0 left-0 right-0 h-0.75 bg-linear-to-r from-[#5C2E6E] to-[#C9A84C]" />
-          <h2 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-medium text-[#1C1410] mb-4">
-            Ready to Find Your <em className="text-[#5C2E6E]">Forever</em>?
-          </h2>
-          <p className="text-[#7A7069] leading-relaxed text-sm mb-10 max-w-2xl mx-auto">
-            Join thousands of people finding genuine connections every day. Download the Forever Find app and start your journey today.
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            {downloadLinks.map((link) => (
-              <a
-                key={link.platform}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#C9A84C] text-[#1C1410] font-medium px-7 py-3 rounded text-sm tracking-wide hover:bg-[#F0DEBB] hover:-translate-y-0.5 transition-all duration-200 shadow-lg shadow-[#C9A84C]/20"
-              >
-                <HugeiconsIcon icon={link.icon} width={16} height={16} />
-                Download on {link.platform}
-              </a>
-            ))}
+          {/* Final CTA Integrated at the bottom */}
+          <div className="border-t border-white/5 p-16 text-center">
+            <h2 className="font-['Cormorant_Garamond',serif] text-[clamp(2rem,4vw,3.5rem)] font-light text-white mb-6 leading-tight">
+              A Premium Experience <em className="italic text-[#C9A84C]">Beyond Algorithms</em>
+            </h2>
+            <p className="text-white/60 text-lg font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+              We provide a time-saving, discrete experience for those who value quality above all. Let us guide you toward finding your ideal partner.
+            </p>
           </div>
-        </motion.div>
+        </section>
+
       </div>
     </section>
   )
 }
+

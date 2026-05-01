@@ -5,6 +5,7 @@ import About from '../components/About'
 import Services from '../components/Services'
 import Gallery from '../components/Gallery'
 import Testimonials from '../components/Testimonials'
+import ConnectionBridge from '../components/ConnectionBridge'
 import Booking from '../components/Booking'
 import Contact from '../components/Contact'
 import FAQ from '../components/FAQ'
@@ -20,6 +21,7 @@ export default function Home() {
       <Services />
       <Gallery />
       <Testimonials />
+      <ConnectionBridge />
       <Booking />
       <Contact />
       <FAQ />

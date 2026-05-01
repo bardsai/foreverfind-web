@@ -11,7 +11,7 @@ const navLinks = [
 const socials = [
   {
     label: 'Instagram',
-    href: 'https://instagram.com',
+    href: 'https://instagram.com/sophisticated_alaga_',
     icon: (
       <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-[1.5]">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -43,24 +43,24 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1C1410] relative overflow-hidden">
+    <footer className="bg-[#100B07] relative overflow-hidden font-['Jost',sans-serif]">
 
       {/* Decorative gold top border */}
-      <div className="h-0.5 w-full bg-linear-to-r from-transparent via-[#C9A84C] to-transparent" />
+      <div className="h-px w-full bg-linear-to-r from-transparent via-[#C9A84C]/50 to-transparent" />
 
       {/* Subtle background texture */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{
           backgroundImage: 'radial-gradient(circle, #C9A84C 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
+          backgroundSize: '32px 32px',
         }}
       />
 
-      <div className="relative max-w-5xl mx-auto px-[5%] pt-16 pb-8">
+      <div className="relative max-w-6xl mx-auto px-[5%] pt-20 pb-10">
 
         {/* Top row: Logo + Nav */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-14">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-16 mb-20">
 
           {/* Brand */}
           <motion.div
@@ -68,13 +68,13 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col gap-4 max-w-xs"
+            className="flex flex-col gap-6 max-w-xs"
           >
             <a href="/">
-              <img src="/logo.svg" alt="ForeverFind Logo" className="h-20 w-auto" />
+              <img src="/main-logo.png" alt="Logo" className="h-auto w-48" />
             </a>
-            <p className="text-white/40 text-xs leading-relaxed">
-              Professional Yoruba wedding hosts bringing joy, culture and elegance to your most cherished day.
+            <p className="text-[#F0DEBB]/40 text-[13px] font-light leading-relaxed">
+              An innovative event service business specializing in creating unforgettable celebrations and meaningful connections across Nigeria and the UK.
             </p>
           </motion.div>
 
@@ -84,14 +84,14 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-col gap-3"
+            className="flex flex-col gap-4"
           >
-            <p className="text-[10px] tracking-[0.2em] uppercase text-[#C9A84C] mb-1">Quick Links</p>
+            <p className="text-[10px] tracking-[0.22em] uppercase text-[#C9A84C] mb-2">Quick Links</p>
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-white/50 text-sm hover:text-[#C9A84C] transition-colors duration-200"
+                className="text-[#F0DEBB]/60 text-sm hover:text-[#C9A84C] transition-colors duration-200 font-light"
               >
                 {link.label}
               </a>
@@ -104,31 +104,31 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col gap-3"
+            className="flex flex-col gap-4"
           >
-            <p className="text-[10px] tracking-[0.2em] uppercase text-[#C9A84C] mb-1">Contact</p>
-            <a href="tel:+447423243282" className="text-white/50 text-sm hover:text-white/80 transition-colors">
+            <p className="text-[10px] tracking-[0.22em] uppercase text-[#C9A84C] mb-2">Contact</p>
+            <a href="tel:+447423243282" className="text-[#F0DEBB]/60 text-sm hover:text-[#C9A84C] transition-colors font-light">
               +44 7423 243282
             </a>
-            <a href="mailto:foreverfind@gmail.com" className="text-white/50 text-sm hover:text-white/80 transition-colors">
+            <a href="mailto:foreverfind@gmail.com" className="text-[#F0DEBB]/60 text-sm hover:text-[#C9A84C] transition-colors font-light">
               foreverfind@gmail.com
             </a>
-            <p className="text-white/40 text-sm">Nigeria & UK</p>
+            <p className="text-[#F0DEBB]/40 text-sm font-light">Nigeria & UK</p>
           </motion.div>
 
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/10 mb-6" />
+        <div className="border-t border-[#F0DEBB]/5 mb-10" />
 
         {/* Bottom row */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-xs">
-            &copy; {new Date().getFullYear()} ForeverFind. Crafted with love for Yoruba traditions.
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+          <p className="text-[#F0DEBB]/20 text-[11px] tracking-wide font-light">
+            &copy; {new Date().getFullYear()} Sophisticated Alaga Event. Crafted with Cultural Authenticity.
           </p>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             {socials.map((s) => (
               <a
                 key={s.label}
@@ -136,7 +136,7 @@ export default function Footer() {
                 aria-label={s.label}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/30 hover:text-[#C9A84C] transition-colors duration-200"
+                className="text-[#F0DEBB]/30 hover:text-[#C9A84C] transition-colors duration-300"
               >
                 {s.icon}
               </a>
