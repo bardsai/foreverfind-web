@@ -48,7 +48,7 @@ export default function Navbar() {
       >
         <Link to="/" className="relative z-110">
           <img
-            src={isAppPage ? "/logo.svg" : "/main-logo.png"}
+            src={isAppPage ? "/logo.svg" : "/main-logo.webp"}
             alt="Logo"
             className={`h-10 sm:h-14 w-auto transition-all duration-500 ${!isScrolled && !isAppPage && !mobileMenuOpen ? '' : ''
               }`}
@@ -97,38 +97,75 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Side-Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-            className="fixed inset-0 z-90 bg-[#FDFAF6] flex flex-col items-center justify-center p-10 md:hidden"
-          >
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at center, #C9A84C 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+          <>
+            {/* Backdrop Blur Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 z-90 bg-[#1C1410]/40 backdrop-blur-sm md:hidden"
+            />
 
-            <div className="relative z-10 flex flex-col items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`font-['Cormorant_Garamond',serif] text-4xl font-light tracking-wide hover:text-[#C9A84C] transition-colors ${link.isApp ? 'text-[#C9A84C]' : 'text-[#1C1410]'}`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <a
-                href="#booking"
+            {/* Slide-in Drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-[85vw] max-w-sm z-110 bg-[#FDFAF6] shadow-2xl flex flex-col pt-24 px-10 pb-10 md:hidden border-l border-[#C9A84C]/20"
+            >
+              <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-8 bg-[#1C1410] text-[#FDFAF6] text-[11px] font-medium tracking-[0.2em] uppercase px-12 py-4 rounded-sm hover:bg-[#C9A84C] transition-colors duration-300"
+                className="absolute top-8 right-[5%] z-20 p-2 text-[#1C1410] hover:text-[#C9A84C] transition-colors"
+                aria-label="Close Menu"
               >
-                Book Consultation
-              </a>
-            </div>
-          </motion.div>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at center, #C9A84C 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+
+              <div className="relative z-10 flex flex-col items-start gap-8 flex-1 mt-4">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.label}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.08 + 0.15, duration: 0.4 }}
+                  >
+                    <Link
+                      to={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`font-['Cormorant_Garamond',serif] text-3xl font-light tracking-wide hover:text-[#C9A84C] transition-colors ${link.isApp ? 'text-[#C9A84C]' : 'text-[#1C1410]'}`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.08 + 0.2, duration: 0.4 }}
+                className="relative z-10 mt-auto pt-8 border-t border-[#C9A84C]/20"
+              >
+                <a
+                  href="#booking"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex justify-center w-full bg-[#1C1410] text-[#FDFAF6] text-[11px] font-medium tracking-[0.2em] uppercase px-8 py-4 rounded-sm hover:bg-[#C9A84C] transition-colors duration-300"
+                >
+                  Book Consultation
+                </a>
+              </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

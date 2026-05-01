@@ -111,9 +111,10 @@ export default function AppShowcase() {
               className="relative rounded-sm overflow-hidden"
             >
               <img
-                src="/foreverfind.jpeg"
+                src="/foreverfind.webp"
                 alt="Celebration of Union"
                 className="w-full h-auto object-contain"
+                loading="lazy"
               />
             </motion.div>
           </div>
@@ -147,9 +148,10 @@ export default function AppShowcase() {
             className="absolute -top-24 -left-24 w-64 aspect-square rounded-sm overflow-hidden border border-[#C9A84C]/20 shadow-2xl -z-10 hidden xl:block"
           >
             <img
-              src="/foreverfind-2.jpeg"
+              src="/foreverfind-2.webp"
               alt="Lifestyle Detail"
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           </motion.div>
         </div>
@@ -178,9 +180,10 @@ export default function AppShowcase() {
                 className="relative rounded-sm overflow-hidden shadow-2xl border border-[#C9A84C]/20"
               >
                 <img
-                  src="/foreverfind-2.jpeg"
+                  src="/foreverfind-2.webp"
                   alt="Proposal"
                   className="w-full object-contain brightness-75"
+                  loading="lazy"
                 />
               </motion.div>
 
@@ -241,10 +244,10 @@ export default function AppShowcase() {
 
           {/* Final CTA Integrated at the bottom */}
           <div className="border-t border-white/5 p-16 text-center">
-            <h2 className="font-['Cormorant_Garamond',serif] text-[clamp(2rem,4vw,3.5rem)] font-light text-white mb-6 leading-tight">
+            <h2 className="font-['Cormorant_Garamond',serif] text-[clamp(1.5rem,4vw,3.5rem)] font-light text-white mb-6 leading-tight">
               A Premium Experience <em className="italic text-[#C9A84C]">Beyond Algorithms</em>
             </h2>
-            <p className="text-white/60 text-lg font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-white/60 md:text-lg text-base font-light mb-10 max-w-2xl mx-auto leading-relaxed">
               We provide a time-saving, discrete experience for those who value quality above all. Let us guide you toward finding your ideal partner.
             </p>
           </div>

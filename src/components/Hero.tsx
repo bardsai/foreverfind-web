@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import heroImg from '../assets/hero.jpg'
+import heroImg from '../assets/hero.webp'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 18 },

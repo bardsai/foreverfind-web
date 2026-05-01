@@ -2,12 +2,12 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const images = [
-  '/wedding-1.jpg',
-  '/wedding-02.jpg',
-  '/wedding-03.jpg',
-  '/wedding-04.jpg',
-  '/wedding-05.jpg',
-  '/wedding-2.jpg',
+  '/wedding-1.webp',
+  '/wedding-02.webp',
+  '/wedding-03.webp',
+  '/wedding-04.webp',
+  '/wedding-05.webp',
+  '/wedding-2.webp',
 ]
 
 export default function Gallery() {
@@ -42,6 +42,7 @@ export default function Gallery() {
               className="w-full h-full object-cover brightness-[0.95] saturate-[0.85] group-hover:brightness-100 group-hover:saturate-100 transition-all duration-700"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.8 }}
+              loading="lazy"
             />
             <div className="absolute inset-0 border border-[#C9A84C]/20 m-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <div className="absolute inset-0 bg-linear-to-t from-[#100B07]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -49,14 +50,14 @@ export default function Gallery() {
         ))}
       </div>
 
-      <div className="text-center mt-16">
+      {/* <div className="text-center mt-16">
         <a
           href="/gallery"
           className="inline-flex items-center justify-center gap-[8px] bg-[#C9A84C] text-[#100B07] font-medium text-[11px] tracking-[0.16em] uppercase no-underline px-[32px] py-[14px] transition-all duration-200 hover:bg-[#F0DEBB] hover:-translate-y-[2px]"
         >
           View Full Gallery
         </a>
-      </div>
+      </div> */}
     </section>
   )
 }

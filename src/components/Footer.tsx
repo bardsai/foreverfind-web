@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#contact' },
-  { label: 'Book a Consultation', href: '#booking' },
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/#about' },
+  { label: 'Sophisticated Foreverfind', href: '/#app' },
+  { label: 'Contact', href: '/#contact' },
+  { label: 'Book a Consultation', href: '/#booking' },
 ]
 
 const socials = [
@@ -71,10 +71,10 @@ export default function Footer() {
             className="flex flex-col gap-6 max-w-xs"
           >
             <a href="/">
-              <img src="/main-logo.png" alt="Logo" className="h-auto w-48" />
+              <img src="/main-logo.webp" alt="Logo" className="h-auto w-48" loading="lazy" />
             </a>
             <p className="text-[#F0DEBB]/40 text-[13px] font-light leading-relaxed">
-              An innovative event service business specializing in creating unforgettable celebrations and meaningful connections across Nigeria and the UK.
+              An innovative event service business specializing in creating unforgettable celebrations and meaningful connections across the globe.
             </p>
           </motion.div>
 

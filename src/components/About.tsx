@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import host from '../assets/host.jpg'
+import host from '../assets/host.webp'
 
 export default function About() {
   const ref = useRef<HTMLElement>(null)
@@ -24,6 +24,7 @@ export default function About() {
             src={host}
             alt="Wedding Host"
             className="relative z-10 w-full h-112 md:h-144 object-cover rounded-sm shadow-xl"
+            loading="lazy"
           />
           <div className="absolute -bottom-6 -right-6 w-full h-full border border-[#C9A84C]/30 rounded-sm z-0" />
         </motion.div>

@@ -29,7 +29,7 @@ export default function ConnectionBridge() {
                   <p className="text-[10px] font-normal tracking-[0.22em] uppercase text-[#C9A84C]">The Forever Ecosystem</p>
                 </div>
 
-                <h2 className="font-light text-[clamp(2.5rem,5vw,3rem)] text-[#1C1410] leading-tight mb-8 tracking-[-0.01em]">
+                <h2 className="font-light text-[clamp(2rem,5vw,3rem)] text-[#1C1410] leading-tight mb-8 tracking-[-0.01em]">
                   Beyond the <em className="italic font-medium text-[#C9A84C]">Alaga</em>: <br />
                   Finding Your <em className="italic font-medium text-[#C9A84C]">Forever</em>
                 </h2>
@@ -69,9 +69,10 @@ export default function ConnectionBridge() {
                 className="absolute inset-0"
               >
                 <img
-                  src="/forever_journey_bridge.png"
+                  src="/forever_journey_bridge.webp"
                   alt="Heritage meets Matchmaking"
                   className="w-full h-full object-cover brightness-[0.7] group-hover:scale-105 transition-transform duration-2000"
+                  loading="lazy"
                 />
 
                 {/* Gradient Overlay for better text integration and depth */}
