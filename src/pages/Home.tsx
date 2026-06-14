@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Stats from '../components/Stats'
@@ -12,6 +14,23 @@ import FAQ from '../components/FAQ'
 import Footer from '../components/Footer'
 
 export default function Home() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (!location.hash) return
+
+    const sectionId = location.hash.replace('#', '')
+    const target = document.getElementById(sectionId)
+
+    if (!target) return
+
+    const scrollTarget = window.setTimeout(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 0)
+
+    return () => window.clearTimeout(scrollTarget)
+  }, [location.hash])
+
   return (
     <>
       <Navbar />

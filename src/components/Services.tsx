@@ -50,7 +50,7 @@ export default function Services() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="services" className="py-24 px-[5%] bg-[#FDFAF6] font-['Jost',sans-serif]" ref={ref}>
+    <section id="services" className="py-24 px-[5%] bg-[#FDFAF6] font-['Jost',sans-serif] scroll-mt-32 md:scroll-mt-36" ref={ref}>
       <div className="text-center mb-16">
         <div className="flex items-center justify-center gap-[10px] mb-4">
           <span className="block w-[24px] h-px bg-[#C9A84C]"></span>

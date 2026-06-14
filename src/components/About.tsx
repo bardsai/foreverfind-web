@@ -7,7 +7,7 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="about" className="relative py-24 px-[5%] bg-[#FDFAF6] overflow-hidden font-['Jost',sans-serif]" ref={ref}>
+    <section id="about" className="relative py-24 px-[5%] bg-[#FDFAF6] overflow-hidden font-['Jost',sans-serif] scroll-mt-32 md:scroll-mt-36" ref={ref}>
       {/* Background Motifs */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at center, #C9A84C 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-[#C9A84C]/5 blur-[100px] rounded-full pointer-events-none" />

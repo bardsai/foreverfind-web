@@ -44,7 +44,7 @@ const contacts: ContactItem[] = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-[#FDFAF6] py-24 px-[5%] font-['Jost',sans-serif]">
+    <section id="contact" className="bg-[#FDFAF6] py-24 px-[5%] font-['Jost',sans-serif] scroll-mt-32 md:scroll-mt-36">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}

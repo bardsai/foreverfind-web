@@ -15,7 +15,7 @@ export default function Gallery() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="gallery" className="py-24 px-[5%] bg-[#FDFAF6] font-['Jost',sans-serif]" ref={ref}>
+    <section id="gallery" className="py-24 px-[5%] bg-[#FDFAF6] font-['Jost',sans-serif] scroll-mt-32 md:scroll-mt-36" ref={ref}>
       <div className="text-center max-w-xl mx-auto mb-16">
         <div className="flex items-center justify-center gap-[10px] mb-4">
           <span className="block w-[24px] h-px bg-[#C9A84C]"></span>

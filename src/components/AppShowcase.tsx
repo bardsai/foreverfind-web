@@ -33,7 +33,7 @@ const features: Feature[] = [
 
 const downloadLinks = [
   { platform: 'iOS', icon: '/apple-store-svgrepo-com.svg', url: '#' },
-  { platform: 'Android', icon: '/google-play-svgrepo-com.svg', url: '#' },
+  { platform: 'Android', icon: '/google-play-svgrepo-com.svg', url: 'https://expo.dev/artifacts/eas/jV8F6VOqbR8TXLrp3Y7Mvtvj7UlKHKbgSUuHXdXCaj4.apk' },
 ]
 
 export default function AppShowcase() {
@@ -89,6 +89,8 @@ export default function AppShowcase() {
                   <a
                     key={link.platform}
                     href={link.url}
+                    target={link.url === '#' ? undefined : '_blank'}
+                    rel={link.url === '#' ? undefined : 'noopener noreferrer'}
                     className="group w-14 h-14 border border-[#C9A84C]/30 rounded-full flex items-center justify-center text-[#1C1410] hover:bg-[#C9A84C] hover:text-[#FDFAF6] transition-all duration-500"
                     aria-label={`Download for ${link.platform}`}
                   >
@@ -247,7 +249,7 @@ export default function AppShowcase() {
             <h2 className="font-['Cormorant_Garamond',serif] text-[clamp(1.5rem,4vw,3.5rem)] font-light text-white mb-6 leading-tight">
               A Premium Experience <em className="italic text-[#C9A84C]">Beyond Algorithms</em>
             </h2>
-            <p className="text-white/60 md:text-lg text-base font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-white/70 md:text-lg text-base font-light mb-10 max-w-2xl mx-auto leading-relaxed">
               We provide a time-saving, discrete experience for those who value quality above all. Let us guide you toward finding your ideal partner.
             </p>
           </div>
@@ -257,4 +259,3 @@ export default function AppShowcase() {
     </section>
   )
 }
-

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -123,9 +124,17 @@ export default function Footer() {
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-[#F0DEBB]/20 text-[11px] tracking-wide font-light">
-            &copy; {new Date().getFullYear()} Sophisticated Alaga Event. Crafted with Cultural Authenticity.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+            <p className="text-[#F0DEBB]/20 text-[11px] tracking-wide font-light">
+              &copy; {new Date().getFullYear()} Sophisticated Alaga Event. Crafted with Cultural Authenticity.
+            </p>
+            <Link
+              to="/privacy"
+              className="text-[#F0DEBB]/30 text-[11px] tracking-wide font-light hover:text-[#C9A84C] transition-colors duration-200"
+            >
+              Privacy Policy
+            </Link>
+          </div>
 
           {/* Social Icons */}
           <div className="flex items-center gap-6">

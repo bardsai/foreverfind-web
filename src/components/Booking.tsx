@@ -8,7 +8,7 @@ export default function Booking() {
   const inputClass = "bg-white border border-[#C9A84C]/20 rounded-sm text-[13px] text-[#1C1410] px-4 py-3 outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]/10 transition-all font-['Jost',sans-serif] w-full placeholder:text-[#7A7069]/40"
 
   return (
-    <section id="booking" className="py-24 px-[5%] bg-[#FDFAF6] font-['Jost',sans-serif]" ref={ref}>
+    <section id="booking" className="py-24 px-[5%] bg-[#FDFAF6] font-['Jost',sans-serif] scroll-mt-32 md:scroll-mt-36" ref={ref}>
       <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_1.5fr] gap-16 md:gap-24 items-start">
 
         <motion.div
