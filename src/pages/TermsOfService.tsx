@@ -246,7 +246,7 @@ export default function TermsOfService() {
             <div className="flex flex-col gap-4">
               {section.body.map((block, j) => (
                 <div key={j}>
-                  {block.subtitle && (
+                  {'subtitle' in block && block.subtitle && (
                     <p className="text-[10px] tracking-[0.2em] uppercase text-[#C9A84C] mb-2">{block.subtitle}</p>
                   )}
                   {block.text.split('\n').map((line, k) => (
