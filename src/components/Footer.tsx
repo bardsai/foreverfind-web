@@ -134,6 +134,12 @@ export default function Footer() {
             >
               Privacy Policy
             </Link>
+            <Link
+              to="/terms"
+              className="text-[#F0DEBB]/30 text-[11px] tracking-wide font-light hover:text-[#C9A84C] transition-colors duration-200"
+            >
+              Terms of Service
+            </Link>
           </div>
 
           {/* Social Icons */}
