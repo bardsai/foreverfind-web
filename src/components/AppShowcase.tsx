@@ -35,14 +35,16 @@ const downloadLinks = [
   {
     platform: 'iOS',
     icon: '/apple-store-svgrepo-com.svg',
-    url: null,
-    comingSoon: true,
+    url: 'https://foreverfind.sophisticatedandco.com/',
+    label: 'Use Web App',
+    isDownload: false,
   },
   {
     platform: 'Android',
     icon: '/google-play-svgrepo-com.svg',
     url: 'https://expo.dev/artifacts/eas/t5XK_7LtZeck98wz4Ke8JrT03xa6UWV6QTTZsP4b--s.apk',
-    comingSoon: false,
+    label: 'Download APK',
+    isDownload: true,
   },
 ]
 
@@ -94,42 +96,28 @@ export default function AppShowcase() {
               <a href="#registration" className="bg-[#1C1410] text-[#FDFAF6] px-10 py-5 rounded-sm text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-[#C9A84C] transition-all duration-500 shadow-2xl shadow-[#1C1410]/20">
                 Start Your Story
               </a>
-              <div className="flex gap-4">
-                {downloadLinks.map((link) =>
-                  link.comingSoon ? (
-                    <div
-                      key={link.platform}
-                      className="relative w-14 h-14 border border-[#C9A84C]/20 rounded-full flex items-center justify-center opacity-50 cursor-not-allowed"
-                      aria-label={`${link.platform} app coming soon`}
-                      title="Coming soon"
-                    >
-                      <img
-                        src={link.icon}
-                        alt={link.platform}
-                        className="w-10 h-10 opacity-70"
-                      />
-                      <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] uppercase tracking-[0.2em] text-[#C9A84C] font-semibold">
-                        Coming Soon
-                      </span>
-                    </div>
-                  ) : (
-                    <a
-                      key={link.platform}
-                      href={link.url!}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      download
-                      className="group w-14 h-14 border border-[#C9A84C]/30 rounded-full flex items-center justify-center hover:bg-[#C9A84C] transition-all duration-500"
-                      aria-label={`Download for ${link.platform}`}
-                    >
-                      <img
-                        src={link.icon}
-                        alt={link.platform}
-                        className="w-10 h-10 transition-all duration-500 group-hover:brightness-0 group-hover:invert opacity-70 group-hover:opacity-100"
-                      />
-                    </a>
-                  )
-                )}
+              <div className="flex gap-4 pb-6 sm:pb-0">
+                {downloadLinks.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...(link.isDownload ? { download: true } : {})}
+                    className="group relative w-14 h-14 border border-[#C9A84C]/30 rounded-full flex items-center justify-center hover:bg-[#C9A84C] transition-all duration-500"
+                    aria-label={`${link.label} (${link.platform})`}
+                    title={link.label}
+                  >
+                    <img
+                      src={link.icon}
+                      alt={link.platform}
+                      className="w-10 h-10 transition-all duration-500 group-hover:brightness-0 group-hover:invert opacity-70 group-hover:opacity-100"
+                    />
+                    <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] uppercase tracking-[0.2em] text-[#C9A84C] font-semibold">
+                      {link.label}
+                    </span>
+                  </a>
+                ))}
               </div>
             </div>
           </motion.div>
