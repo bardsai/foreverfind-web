@@ -43,7 +43,8 @@ const downloadLinks = [
     platform: 'Android',
     icon: '/google-play-svgrepo-com.svg',
     url: 'https://expo.dev/artifacts/eas/t5XK_7LtZeck98wz4Ke8JrT03xa6UWV6QTTZsP4b--s.apk',
-    label: 'Download APK',
+    // label: 'Download APK',
+    label: '',
     isDownload: true,
   },
 ]
