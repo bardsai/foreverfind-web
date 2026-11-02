@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/#about' },
-  { label: 'Sophisticated Foreverfind', href: '/#app' },
+  // { label: 'Sophisticated Foreverfind', href: '/#app' },
   { label: 'Contact', href: '/#contact' },
   { label: 'Book a Consultation', href: '/#booking' },
 ]
@@ -39,6 +39,23 @@ const socials = [
         <polyline points="22,6 12,13 2,6" />
       </svg>
     ),
+  },
+]
+
+const downloadLinks = [
+  {
+    platform: 'iOS',
+    icon: '/apple-store-svgrepo-com.svg',
+    url: 'https://foreverfind.sophisticatedandco.com/',
+    label: 'Use Web App',
+    isDownload: false,
+  },
+  {
+    platform: 'Android',
+    icon: '/google-play-svgrepo-com.svg',
+    url: 'https://expo.dev/artifacts/eas/t5XK_7LtZeck98wz4Ke8JrT03xa6UWV6QTTZsP4b--s.apk',
+    label: 'Download APK',
+    isDownload: true,
   },
 ]
 
@@ -97,6 +114,35 @@ export default function Footer() {
                 {link.label}
               </a>
             ))}
+            {/* App download links */}
+            <div className="mt-4 pt-6 border-t border-[#F0DEBB]/5">
+              <p className="text-[10px] tracking-[0.22em] uppercase text-[#C9A84C] mb-4">Get the App</p>
+              <div className="flex gap-6">
+                {downloadLinks.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...(link.isDownload ? { download: true } : {})}
+                    className="group flex flex-col items-center gap-2"
+                    aria-label={`${link.label} (${link.platform})`}
+                    title={link.label}
+                  >
+                    <span className="w-11 h-11 border border-[#C9A84C]/30 rounded-full flex items-center justify-center group-hover:border-[#C9A84C] group-hover:bg-[#C9A84C]/10 transition-all duration-300">
+                      <img
+                        src={link.icon}
+                        alt={link.platform}
+                        className="w-7 h-7 brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </span>
+                    <span className="text-[9px] uppercase tracking-[0.2em] text-[#F0DEBB]/50 group-hover:text-[#C9A84C] transition-colors duration-300 font-light whitespace-nowrap">
+                      {link.label}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </motion.nav>
 
           {/* Contact snippet */}
