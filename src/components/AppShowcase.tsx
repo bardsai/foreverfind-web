@@ -37,14 +37,17 @@ const downloadLinks = [
     icon: '/apple-store-svgrepo-com.svg',
     url: 'https://foreverfind.sophisticatedandco.com/',
     label: 'Use Web App',
+    ctaTitle: 'Open Web Version',
+    ctaSub: 'Works on iPhone and any browser',
     isDownload: false,
   },
   {
     platform: 'Android',
     icon: '/google-play-svgrepo-com.svg',
     url: 'https://expo.dev/artifacts/eas/t5XK_7LtZeck98wz4Ke8JrT03xa6UWV6QTTZsP4b--s.apk',
-    // label: 'Download APK',
     label: '',
+    ctaTitle: 'Download for Android',
+    ctaSub: 'Direct APK download',
     isDownload: true,
   },
 ]
@@ -175,23 +178,23 @@ export default function AppShowcase() {
           </motion.div>
         </div>
 
-        {/* Integrated Registration & CTA Section */}
-        <section id="registration" className="mt-32 bg-[#1C1410] rounded-sm relative overflow-hidden">
+        {/* App Download CTA Section */}
+        <section id="get-the-app" className="mt-32 bg-[#1C1410] rounded-sm relative overflow-hidden">
           {/* Abstract pattern overlay */}
           <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(circle at center, #C9A84C 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-
+        
           <div className="relative z-10 p-12 md:p-24">
             <div className="text-center mb-20">
               <h2 className="font-['Cormorant_Garamond',serif] text-[clamp(2.5rem,5vw,4rem)] font-light text-white mb-4 leading-tight">
-                Looking for <em className="italic text-[#C9A84C]">True Love</em>
+                Your Love Story, <em className="italic text-[#C9A84C]">One Tap Away</em>
               </h2>
               <p className="text-white/60 font-light tracking-wide max-w-2xl mx-auto">
-                Kindly fill out the form below and our matchmakers will reach out to you to begin your journey.
+                Download the app on Android, or open the web version on any device, and begin your journey toward a meaningful union.
               </p>
             </div>
-
+        
             <div className="grid lg:grid-cols-2 gap-20 items-center max-w-6xl mx-auto">
-              {/* Form Image Visual */}
+              {/* Visual */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -205,62 +208,50 @@ export default function AppShowcase() {
                   loading="lazy"
                 />
               </motion.div>
-
-              {/* The Actual Form */}
-              <motion.form
+        
+              {/* Download Actions */}
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="space-y-8"
+                className="space-y-5"
               >
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <label className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">Name <span className="text-[#C9A84C]">*</span></label>
-                    <input type="text" required className="w-full bg-white/3 border border-white/10 rounded-sm px-4 py-4 text-sm text-white focus:outline-none focus:border-[#C9A84C] transition-all placeholder:text-white/20" placeholder="Full Name" />
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">Email <span className="text-[#C9A84C]">*</span></label>
-                    <input type="email" required className="w-full bg-white/3 border border-white/10 rounded-sm px-4 py-4 text-sm text-white focus:outline-none focus:border-[#C9A84C] transition-all placeholder:text-white/20" placeholder="Email Address" />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <label className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">WhatsApp Number <span className="text-[#C9A84C]">*</span></label>
-                  <input type="tel" required className="w-full bg-white/3 border border-white/10 rounded-sm px-4 py-4 text-sm text-white focus:outline-none focus:border-[#C9A84C] transition-all placeholder:text-white/20" placeholder="+123 456 7890" />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <label className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">Gender <span className="text-[#C9A84C]">*</span></label>
-                    <div className="relative">
-                      <select required className="w-full bg-white/3 border border-white/10 rounded-sm px-4 py-4 text-sm text-white focus:outline-none focus:border-[#C9A84C] transition-all appearance-none cursor-pointer">
-                        <option value="" className="bg-[#1C1410]">Select Gender</option>
-                        <option value="male" className="bg-[#1C1410]">Male</option>
-                        <option value="female" className="bg-[#1C1410]">Female</option>
-                      </select>
-                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#C9A84C]">↓</div>
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">Service <span className="text-[#C9A84C]">*</span></label>
-                    <div className="relative">
-                      <select required className="w-full bg-white/3 border border-white/10 rounded-sm px-4 py-4 text-sm text-white focus:outline-none focus:border-[#C9A84C] transition-all appearance-none cursor-pointer">
-                        <option value="" className="bg-[#1C1410]">Select Service</option>
-                        <option value="whatsapp" className="bg-[#1C1410]">WhatsApp Group</option>
-                        <option value="matchmaking" className="bg-[#1C1410]">Personal Matchmaking</option>
-                      </select>
-                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#C9A84C]">↓</div>
-                    </div>
-                  </div>
-                </div>
-
-                <button type="submit" className="w-full bg-[#C9A84C] text-[#100B07] py-5 rounded-sm text-[11px] font-bold tracking-[0.3em] uppercase hover:bg-white transition-all duration-500 mt-4 shadow-2xl shadow-[#C9A84C]/20">
-                  Submit Registration
-                </button>
-              </motion.form>
+                {downloadLinks.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...(link.isDownload ? { download: true } : {})}
+                    className="group flex items-center gap-6 border border-[#C9A84C]/30 rounded-sm p-6 hover:bg-[#C9A84C] hover:border-[#C9A84C] transition-all duration-500"
+                    aria-label={`${link.ctaTitle} (${link.platform})`}
+                  >
+                    <span className="w-16 h-16 shrink-0 rounded-full border border-[#C9A84C]/30 flex items-center justify-center group-hover:border-[#1C1410]/30 transition-colors duration-500">
+                      <img
+                        src={link.icon}
+                        alt=""
+                        className="w-10 h-10 brightness-0 invert opacity-80 group-hover:invert-0 group-hover:opacity-100 transition-all duration-500"
+                      />
+                    </span>
+                    <span className="flex flex-col gap-1">
+                      <span className="font-['Cormorant_Garamond',serif] text-2xl text-white group-hover:text-[#1C1410] transition-colors duration-500 leading-none">
+                        {link.ctaTitle}
+                      </span>
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-white/50 group-hover:text-[#1C1410]/70 transition-colors duration-500">
+                        {link.ctaSub}
+                      </span>
+                    </span>
+                    <span className="ml-auto text-[#C9A84C] group-hover:text-[#1C1410] text-xl transition-colors duration-500">→</span>
+                  </a>
+                ))}
+        
+                <p className="text-white/40 text-xs font-light leading-relaxed pt-2">
+                  Android users: your phone may ask you to allow installs from unknown sources, since the app is installed directly rather than through the Play Store.
+                </p>
+              </motion.div>
             </div>
           </div>
-
+        
           {/* Final CTA Integrated at the bottom */}
           <div className="border-t border-white/5 p-16 text-center">
             <h2 className="font-['Cormorant_Garamond',serif] text-[clamp(1.5rem,4vw,3.5rem)] font-light text-white mb-6 leading-tight">
