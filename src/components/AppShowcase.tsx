@@ -245,9 +245,9 @@ export default function AppShowcase() {
                   </a>
                 ))}
         
-                <p className="text-white/40 text-xs font-light leading-relaxed pt-2">
+                {/* <p className="text-white/40 text-xs font-light leading-relaxed pt-2">
                   Android users: your phone may ask you to allow installs from unknown sources, since the app is installed directly rather than through the Play Store.
-                </p>
+                </p> */}
               </motion.div>
             </div>
           </div>
