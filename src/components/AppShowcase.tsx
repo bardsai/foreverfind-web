@@ -97,7 +97,7 @@ export default function AppShowcase() {
             </p>
 
             <div className="flex flex-wrap gap-5">
-              <a href="#get-the-app" className="bg-[#1C1410] text-[#FDFAF6] px-10 py-5 rounded-sm text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-[#C9A84C] transition-all duration-500 shadow-2xl shadow-[#1C1410]/20">
+              <a href="#get-the-app" className="bg-[#1C1410] flex items-center justify-center text-[#FDFAF6] px-10 py-5 rounded-sm text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-[#C9A84C] transition-all duration-500 shadow-2xl shadow-[#1C1410]/20">
                 Start Your Story
               </a>
               <div className="flex gap-6 items-start">
