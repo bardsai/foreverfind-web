@@ -36,7 +36,7 @@ const downloadLinks = [
     platform: 'iOS',
     icon: '/apple-store-svgrepo-com.svg',
     url: 'https://foreverfind.sophisticatedandco.com/',
-    label: 'Use Web App',
+    label: 'Web App',
     ctaTitle: 'Open Web Version',
     ctaSub: 'Works on iPhone and any browser',
     isDownload: false,
@@ -45,7 +45,7 @@ const downloadLinks = [
     platform: 'Android',
     icon: '/google-play-svgrepo-com.svg',
     url: 'https://expo.dev/artifacts/eas/t5XK_7LtZeck98wz4Ke8JrT03xa6UWV6QTTZsP4b--s.apk',
-    label: '',
+    label: 'Android App',
     ctaTitle: 'Download for Android',
     ctaSub: 'Direct APK download',
     isDownload: true,
@@ -100,7 +100,7 @@ export default function AppShowcase() {
               <a href="#get-the-app" className="bg-[#1C1410] text-[#FDFAF6] px-10 py-5 rounded-sm text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-[#C9A84C] transition-all duration-500 shadow-2xl shadow-[#1C1410]/20">
                 Start Your Story
               </a>
-              <div className="flex gap-4 pb-6 sm:pb-0">
+              <div className="flex gap-6 items-start">
                 {downloadLinks.map((link) => (
                   <a
                     key={link.platform}
@@ -108,16 +108,17 @@ export default function AppShowcase() {
                     target="_blank"
                     rel="noopener noreferrer"
                     {...(link.isDownload ? { download: true } : {})}
-                    className="group relative w-14 h-14 border border-[#C9A84C]/30 rounded-full flex items-center justify-center hover:bg-[#C9A84C] transition-all duration-500"
+                    className="group flex flex-col items-center gap-2"
                     aria-label={`${link.label} (${link.platform})`}
-                    title={link.label}
                   >
-                    <img
-                      src={link.icon}
-                      alt={link.platform}
-                      className="w-10 h-10 transition-all duration-500 group-hover:brightness-0 group-hover:invert opacity-70 group-hover:opacity-100"
-                    />
-                    <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] uppercase tracking-[0.2em] text-[#C9A84C] font-semibold">
+                    <span className="w-14 h-14 border border-[#C9A84C]/30 rounded-full flex items-center justify-center group-hover:bg-[#C9A84C] transition-all duration-500">
+                      <img
+                        src={link.icon}
+                        alt=""
+                        className="w-10 h-10 transition-all duration-500 group-hover:brightness-0 group-hover:invert opacity-70 group-hover:opacity-100"
+                      />
+                    </span>
+                    <span className="text-[9px] uppercase tracking-[0.2em] text-[#C9A84C] font-semibold whitespace-nowrap">
                       {link.label}
                     </span>
                   </a>
