@@ -157,8 +157,8 @@ export default function Footer() {
             <a href="tel:+447423243282" className="text-[#F0DEBB]/60 text-sm hover:text-[#C9A84C] transition-colors font-light">
               +44 7423 243282
             </a>
-            <a href="mailto:foreverfind@gmail.com" className="text-[#F0DEBB]/60 text-sm hover:text-[#C9A84C] transition-colors font-light">
-              foreverfind@gmail.com
+            <a href="mailto:sophisticatedalaga@gmail.com" className="text-[#F0DEBB]/60 text-sm hover:text-[#C9A84C] transition-colors font-light">
+              sophisticatedalaga@gmail.com
             </a>
             <p className="text-[#F0DEBB]/40 text-sm font-light">Nigeria & UK</p>
           </motion.div>
