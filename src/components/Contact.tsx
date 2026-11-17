@@ -21,8 +21,8 @@ const contacts: ContactItem[] = [
   },
   {
     label: 'Send a Message',
-    value: 'foreverfind@gmail.com',
-    href: 'mailto:foreverfind@gmail.com',
+    value: 'sophisticatedalaga@gmail.com',
+    href: 'mailto:sophisticatedalaga@gmail.com',
     icon: (
       <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-[#C9A84C] fill-none stroke-[1.5]">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
