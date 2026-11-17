@@ -89,11 +89,11 @@ export default function Contact() {
 
               <p className="text-[10px] tracking-[0.2em] uppercase text-[#C9A84C] mb-3">{c.label}</p>
 
-              <div className={`font-['Cormorant_Garamond',serif] font-light text-[#1C1410] leading-tight ${c.href ? 'text-lg italic' : 'text-xl'}`}>
+              <div className={`font-['Cormorant_Garamond',serif] font-light text-[#1C1410] leading-tight ${c.href ? 'text-[15px] italic' : 'text-xl'}`}>
                 {c.href ? (
                   <a
                     href={c.href}
-                    className="hover:text-[#C9A84C] font-[15px] transition-colors break-all"
+                    className="hover:text-[#C9A84C] font-[15px]! transition-colors break-all"
                   >
                     {c.value}
                   </a>
