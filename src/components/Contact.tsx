@@ -93,7 +93,7 @@ export default function Contact() {
                 {c.href ? (
                   <a
                     href={c.href}
-                    className="hover:text-[#C9A84C] transition-colors break-all"
+                    className="hover:text-[#C9A84C] font-base transition-colors break-all"
                   >
                     {c.value}
                   </a>
