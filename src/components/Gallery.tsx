@@ -2,12 +2,12 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const images = [
-  '/wedding-1.webp',
-  '/wedding-02.webp',
-  '/wedding-03.webp',
-  '/wedding-04.webp',
-  '/wedding-05.webp',
-  '/wedding-2.webp',
+  { src: '/wedding-1.webp', alt: 'Wedding celebration 1' },
+  { src: '/wedding-02.webp', alt: 'Wedding celebration 2' },
+  { src: '/wedding-03.webp', alt: 'Wedding celebration 3' },
+  { src: '/wedding-04.webp', alt: 'Wedding celebration 4' },
+  { src: '/wedding-05.webp', alt: 'Wedding celebration 5' },
+  { src: '/wedding-2.webp', alt: 'Wedding celebration 6' },
 ]
 
 export default function Gallery() {
@@ -15,49 +15,47 @@ export default function Gallery() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="gallery" className="py-24 px-[5%] bg-[#FDFAF6] font-['Jost',sans-serif] scroll-mt-32 md:scroll-mt-36" ref={ref}>
-      <div className="text-center max-w-xl mx-auto mb-16">
-        <div className="flex items-center justify-center gap-[10px] mb-4">
-          <span className="block w-[24px] h-px bg-[#C9A84C]"></span>
-          <p className="text-[10px] font-normal tracking-[0.22em] uppercase text-[#C9A84C]">Our Portfolio</p>
-          <span className="block w-[24px] h-px bg-[#C9A84C]"></span>
+    <section
+      id="gallery"
+      className="scroll-mt-32 bg-[#F7E9DE] px-5 py-20 font-sans text-[#482F2B] sm:px-8 sm:py-28 md:scroll-mt-36"
+      ref={ref}
+    >
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
+          <div>
+            <p className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.22em] text-[#B84F3A]">
+              <span className="h-px w-8 bg-current" />
+              Our portfolio
+            </p>
+            <h2 className="font-display text-5xl font-medium leading-[0.98] tracking-[-0.025em] sm:text-6xl">
+              Love looks like <em className="text-[#B84F3A]">this.</em>
+            </h2>
+          </div>
+          <p className="max-w-sm text-sm leading-7 text-[#482F2B]/70 md:pb-1">
+            A few glimpses of the joy, colour, and connection we’re lucky to be part of.
+          </p>
         </div>
-        <h2 className="font-['Cormorant_Garamond',serif] font-light text-[clamp(2.5rem,5vw,3.5rem)] text-[#1C1410] leading-tight tracking-[-0.01em]">
-          Previous Weddings <em className="italic text-[#C9A84C]">We've Hosted</em>
-        </h2>
-      </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
-        {images.map((src, i) => (
-          <motion.div
-            key={src}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: i * 0.08 }}
-            className="overflow-hidden rounded-sm relative group aspect-4/5 bg-[#F7F2EC]"
-          >
-            <motion.img
-              src={src}
-              alt={`Wedding ${i + 1}`}
-              className="w-full h-full object-cover brightness-[0.95] saturate-[0.85] group-hover:brightness-100 group-hover:saturate-100 transition-all duration-700"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.8 }}
-              loading="lazy"
-            />
-            <div className="absolute inset-0 border border-[#C9A84C]/20 m-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            <div className="absolute inset-0 bg-linear-to-t from-[#100B07]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </motion.div>
-        ))}
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+          {images.map((image, index) => (
+            <motion.figure
+              key={image.src}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.08 }}
+              className={`group relative aspect-4/5 overflow-hidden rounded-4xl bg-[#F4C9A8] ${index % 3 === 1 ? 'lg:mt-12' : ''}`}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#482F2B]/25 via-transparent to-transparent opacity-70" />
+            </motion.figure>
+          ))}
+        </div>
       </div>
-
-      {/* <div className="text-center mt-16">
-        <a
-          href="/gallery"
-          className="inline-flex items-center justify-center gap-[8px] bg-[#C9A84C] text-[#100B07] font-medium text-[11px] tracking-[0.16em] uppercase no-underline px-[32px] py-[14px] transition-all duration-200 hover:bg-[#F0DEBB] hover:-translate-y-[2px]"
-        >
-          View Full Gallery
-        </a>
-      </div> */}
     </section>
   )
 }

@@ -137,7 +137,7 @@ export default function PrivacyPolicy() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#FDFAF6] font-['Jost',sans-serif]">
+    <div className="min-h-screen bg-[#FDFAF6] font-sans">
 
       {/* Header */}
       <div className="bg-[#100B07] relative overflow-hidden">
@@ -174,7 +174,7 @@ export default function PrivacyPolicy() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="font-['Cormorant_Garamond',serif] text-4xl sm:text-5xl font-light text-[#F0DEBB] leading-tight mb-6"
+            className="font-display text-4xl sm:text-5xl font-light text-[#F0DEBB] leading-tight mb-6"
           >
             Privacy Policy
           </motion.h1>
@@ -210,7 +210,7 @@ export default function PrivacyPolicy() {
             transition={{ duration: 0.5, delay: i * 0.03 }}
             className="mb-10 pb-10 border-b border-[#1C1410]/8 last:border-0 last:mb-0 last:pb-0"
           >
-            <h2 className="font-['Cormorant_Garamond',serif] text-xl font-semibold text-[#1C1410] mb-5 tracking-wide">
+            <h2 className="font-display text-xl font-semibold text-[#1C1410] mb-5 tracking-wide">
               {section.title}
             </h2>
             <div className="flex flex-col gap-4">

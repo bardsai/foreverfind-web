@@ -1,151 +1,131 @@
-import { motion } from 'framer-motion'
-import heroImg from '../assets/hero.webp'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { ArrowRight2, Pause, Play } from 'iconsax-reactjs'
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 18 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: 'easeOut' }
-} as const)
+const photos = [
+  { src: '/wedding-01.webp', alt: 'A couple celebrating with their family' },
+  { src: '/wedding-02.webp', alt: 'Guests sharing a joyful wedding moment' },
+  { src: '/wedding-03.webp', alt: 'A vibrant traditional wedding celebration' },
+  { src: '/wedding-04.webp', alt: 'A couple enjoying their wedding day' },
+  { src: '/wedding-05.webp', alt: 'Family and friends celebrating together' },
+  { src: '/wedding-06.webp', alt: 'A colourful moment from a wedding celebration' },
+]
+
+const mosaicTiles = [
+  { id: 'large-top', classes: 'col-span-4 row-span-3 rounded-tl-[5rem] rounded-br-2xl', imageOffset: 0, delay: 0 },
+  { id: 'small-top', classes: 'col-span-2 row-span-2 rounded-tr-[3rem] rounded-bl-2xl', imageOffset: 1, delay: 0.1 },
+  { id: 'small-middle', classes: 'col-span-2 row-span-1 rounded-xl', imageOffset: 2, delay: 0.2 },
+  { id: 'small-bottom', classes: 'col-span-2 row-span-3 rounded-bl-[3rem] rounded-tr-2xl', imageOffset: 3, delay: 0.3 },
+  { id: 'large-bottom', classes: 'col-span-4 row-span-3 rounded-br-[5rem] rounded-tl-2xl', imageOffset: 4, delay: 0.4 },
+]
 
 export default function Hero() {
+  const [activePhoto, setActivePhoto] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const prefersReducedMotion = useReducedMotion()
+
+  useEffect(() => {
+    if (!isPlaying || prefersReducedMotion) return
+
+    const timer = window.setInterval(() => {
+      setActivePhoto((current) => (current + 1) % photos.length)
+    }, 5600)
+
+    return () => window.clearInterval(timer)
+  }, [isPlaying, prefersReducedMotion])
+
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden font-['Jost',sans-serif] px-5 sm:px-6 pt-24 sm:pt-28 pb-18 sm:pb-20">
-      {/* Real background image layer */}
-      <div
-        className="absolute inset-0 bg-cover bg-position-[center_top] brightness-[0.6] saturate-[0.6]"
-        style={{ backgroundImage: `url(${heroImg})` }}
-      />
+    <section
+      id="home"
+      className="relative isolate overflow-hidden bg-[#F7F4EE] px-5 pb-16 pt-32 text-[#29241F] sm:px-8 sm:pb-20 sm:pt-36 lg:flex lg:min-h-svh lg:items-center lg:py-28"
+    >
+      <div aria-hidden="true" className="pointer-events-none absolute right-0 top-24 h-96 w-96 rounded-full border border-[#8C6C4B]/10" />
+      <div aria-hidden="true" className="pointer-events-none absolute right-0 top-40 h-64 w-64 rounded-full border border-[#8C6C4B]/10" />
 
-      {/* Warm dark overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(to bottom, rgba(16, 8, 3, 0.55) 0%, rgba(28, 12, 4, 0.3) 40%, rgba(16, 8, 3, 0.75) 100%)"
-        }}
-      />
+      <div className="relative mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+        <div className="relative z-10 py-4 lg:py-12">
+          <p className="mb-6 flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#8C6C4B]">
+            <span className="h-px w-8 bg-current" />
+            Yoruba wedding host &amp; celebration specialist
+          </p>
 
-      {/* Subtle vignette */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "radial-gradient(ellipse 90% 80% at 50% 40%, transparent 40%, rgba(10,5,2,0.65) 100%)"
-        }}
-      />
+          <h1 className="max-w-2xl font-display text-6xl font-light leading-[0.96] tracking-[-0.035em] sm:text-7xl lg:text-[5.5rem]">
+            A beautiful day,
+            <br />
+            <em className="text-[#8C6C4B]">beautifully</em>
+            <br />
+            remembered.
+          </h1>
 
-      {/* Gold horizontal rule top */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[2px]"
-        style={{
-          background: "linear-gradient(to right, transparent, #C9A84C 30%, #F0DEBB 50%, #C9A84C 70%, transparent)"
-        }}
-      />
+          <p className="mt-7 max-w-lg text-sm leading-7 text-[#29241F]/70 sm:text-base">
+            From the ìdúnàádúrà to the last dance, we bring families together with care, culture, and a little magic.
+          </p>
 
-      {/* Adire corner top-left */}
-      <svg className="absolute top-0 left-0 opacity-[0.1] pointer-events-none" width="200" height="200" viewBox="0 0 200 200" fill="none">
-        <line x1="0" y1="0" x2="200" y2="200" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="40" y1="0" x2="200" y2="160" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="80" y1="0" x2="200" y2="120" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="120" y1="0" x2="200" y2="80" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="160" y1="0" x2="200" y2="40" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="0" y1="40" x2="160" y2="200" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="0" y1="80" x2="120" y2="200" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="0" y1="120" x2="80" y2="200" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="0" y1="160" x2="40" y2="200" stroke="#C9A84C" strokeWidth="0.6" />
-        <rect x="0" y="0" width="200" height="200" stroke="#C9A84C" strokeWidth="0.5" />
-      </svg>
-
-      {/* Adire corner bottom-right */}
-      <svg className="absolute bottom-0 right-0 rotate-180 opacity-[0.08] pointer-events-none" width="200" height="200" viewBox="0 0 200 200" fill="none">
-        <line x1="0" y1="0" x2="200" y2="200" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="40" y1="0" x2="200" y2="160" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="80" y1="0" x2="200" y2="120" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="120" y1="0" x2="200" y2="80" stroke="#C9A84C" strokeWidth="0.6" />
-        <line x1="160" y1="0" x2="200" y2="40" stroke="#C9A84C" strokeWidth="0.6" />
-        <rect x="0" y="0" width="200" height="200" stroke="#C9A84C" strokeWidth="0.5" />
-      </svg>
-
-      <div className="relative z-10 w-full max-w-[720px] flex flex-col items-center gap-[1.6rem]">
-        <motion.span
-          {...fadeUp(0.15)}
-          className="inline-flex items-center gap-[10px] text-[10px] font-normal tracking-[0.22em] uppercase text-[#C9A84C]"
-        >
-          <span className="block w-[24px] h-px bg-[#C9A84C]"></span>
-          Professional Yoruba Wedding Host
-          <span className="block w-[24px] h-px bg-[#C9A84C]"></span>
-        </motion.span>
-
-        <motion.h1
-          {...fadeUp(0.3)}
-          className="font-light text-4xl md:text-7xl leading-[1.07] text-[#F5ECD6] tracking-[-0.01em]"
-        >
-          Creating <em className="italic text-[#C9A84C]">Memories</em><br />
-          Beyond <em className="italic text-[#C9A84C]">Events</em>
-        </motion.h1>
-
-        <motion.div
-          {...fadeUp(0.48)}
-          className="flex items-center gap-[12px] w-full max-w-[340px]"
-        >
-          <div className="flex-1 h-px bg-[#C9A84C]/30"></div>
-          <div className="w-[5px] h-[5px] bg-[#C9A84C] rotate-45 opacity-70"></div>
-          <div className="flex-1 h-px bg-[#C9A84C]/30"></div>
-        </motion.div>
-
-        <motion.p
-          {...fadeUp(0.55)}
-          className="text-[13px] font-light tracking-[0.04em] leading-[1.85] text-[#F0DEBB] max-w-[400px]"
-        >
-          From the ìdúnàádúrà to the last dance — a masterful host who honours every tradition, every family, every name.
-        </motion.p>
-
-        <motion.div
-          {...fadeUp(0.62)}
-          className="flex items-center gap-0"
-        >
-          <div className="text-center px-[1.2rem] sm:px-[1.8rem]">
-            <div className="font-['Cormorant_Garamond',serif] text-[1.5rem] sm:text-[1.9rem] font-light text-[#C9A84C] leading-none">250+</div>
-            <div className="text-[8.5px] font-normal tracking-[0.2em] uppercase text-[#F0DEBB]/35 mt-[5px]">Weddings</div>
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <a
+              href="#booking"
+              className="rounded-full bg-[#29241F] px-6 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#8C6C4B]"
+            >
+              <span className="inline-flex items-center gap-2">
+                Plan your celebration
+                <ArrowRight2 size={14} variant="Linear" aria-hidden="true" />
+              </span>
+            </a>
+            <a href="#services" className="px-3 py-3 text-xs underline decoration-[#8C6C4B]/50 underline-offset-4">
+              Explore what we do
+            </a>
           </div>
-          <div className="text-center px-[1.2rem] sm:px-[1.8rem] border-l border-[#C9A84C]/20">
-            <div className="font-['Cormorant_Garamond',serif] text-[1.5rem] sm:text-[1.9rem] font-light text-[#C9A84C] leading-none">8</div>
-            <div className="text-[8.5px] font-normal tracking-[0.2em] uppercase text-[#F0DEBB]/35 mt-[5px]">Years</div>
-          </div>
-          <div className="text-center px-[1.2rem] sm:px-[1.8rem] border-l border-[#C9A84C]/20">
-            <div className="font-['Cormorant_Garamond',serif] text-[1.5rem] sm:text-[1.9rem] font-light text-[#C9A84C] leading-none">5★</div>
-            <div className="text-[8.5px] font-normal tracking-[0.2em] uppercase text-[#F0DEBB]/35 mt-[5px]">Rating</div>
-          </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          {...fadeUp(0.72)}
-          className="flex items-center flex-wrap justify-center gap-4"
-        >
-          <a href="#booking" className="inline-flex items-center gap-[8px] bg-[#C9A84C] text-[#100B07] font-medium text-[11px] tracking-[0.16em] uppercase no-underline px-[28px] py-[14px] transition-all duration-200 hover:bg-[#F0DEBB] hover:-translate-y-[2px]">
-            Book Consultation
-          </a>
-          <a href="#gallery" className="inline-flex items-center gap-[6px] font-light text-[11px] tracking-[0.14em] uppercase text-[#F0DEBB]/60 no-underline border border-[#C9A84C]/30 px-[24px] py-[13px] transition-all duration-200 hover:border-[#C9A84C] hover:text-[#F0DEBB] hover:-translate-y-[2px]">
-            View Gallery
-          </a>
-        </motion.div>
+        <div className="relative mx-auto w-full max-w-155">
+          <div
+            className="grid aspect-square grid-cols-6 grid-rows-6 gap-2 lg:aspect-[1/1.04]"
+            aria-label="Rotating photos from Forever Find celebrations"
+          >
+            {mosaicTiles.map((tile) => {
+              const photo = photos[(activePhoto + tile.imageOffset) % photos.length]
+
+              return (
+                <div key={tile.id} className={`group relative isolate overflow-hidden bg-[#EAE4D9] ${tile.classes}`}>
+                  <AnimatePresence initial={false}>
+                    <motion.img
+                      key={photo.src}
+                      src={photo.src}
+                      alt={photo.alt}
+                      className="absolute inset-0 h-full w-full object-cover"
+                      initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 1.04 }}
+                      animate={{ opacity: 1, scale: prefersReducedMotion ? 1 : 1.1 }}
+                      exit={{ opacity: 0, scale: 1 }}
+                      transition={{
+                        opacity: { duration: prefersReducedMotion ? 0 : 0.8, delay: tile.delay },
+                        scale: { duration: 5.2, ease: 'linear', delay: tile.delay },
+                      }}
+                    />
+                  </AnimatePresence>
+                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#29241F]/20 to-transparent opacity-70" />
+                </div>
+              )
+            })}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setIsPlaying((playing) => !playing)}
+            disabled={prefersReducedMotion === true}
+            aria-label={prefersReducedMotion ? 'Automatic photo animation disabled by reduced motion preference' : isPlaying ? 'Pause photo animation' : 'Play photo animation'}
+            className="absolute right-3 top-3 z-10 rounded-full border border-white/60 bg-white/90 px-4 py-2 text-[10px] uppercase tracking-[0.12em] text-[#29241F] shadow-sm backdrop-blur transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-70 sm:right-5 sm:top-5"
+          >
+            <span className="inline-flex items-center gap-2">
+              {prefersReducedMotion ? null : isPlaying ? (
+                <Pause size={14} variant="Linear" aria-hidden="true" />
+              ) : (
+                <Play size={14} variant="Linear" aria-hidden="true" />
+              )}
+              {prefersReducedMotion ? 'Motion reduced' : isPlaying ? 'Pause photos' : 'Play photos'}
+            </span>
+          </button>
+        </div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1, ease: 'easeOut' }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-[8px]"
-      >
-        <span className="text-[8.5px] tracking-[0.25em] uppercase text-[#C9A84C]/35">Scroll</span>
-        <motion.div
-          animate={{
-            opacity: [0.4, 1, 0.4],
-            scaleY: [1, 1.15, 1],
-          }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-[36px] origin-top"
-          style={{ background: "linear-gradient(to bottom, rgba(201,168,76,0.5), transparent)" }}
-        ></motion.div>
-      </motion.div>
     </section>
   )
 }

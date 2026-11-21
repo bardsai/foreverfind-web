@@ -1,19 +1,20 @@
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion'
 import { useRef, useEffect } from 'react'
+import { Award, Calendar, Global, Heart, type Icon } from 'iconsax-reactjs'
 
 interface Stat {
   value: number
   suffix?: string
   label: string
   text?: string
-  small?: boolean
+  icon: Icon
 }
 
 const stats: Stat[] = [
-  { value: 250, suffix: '+', label: 'Weddings Hosted' },
-  { value: 8, suffix: '+', label: 'Years Experienced' },
-  { value: 100, suffix: '%', label: 'Happy Couples' },
-  { value: 0, text: 'WORLDWIDE', label: 'Coverage Area', small: true },
+  { value: 250, suffix: '+', label: 'Weddings Hosted', icon: Calendar },
+  { value: 8, suffix: '+', label: 'Years Experienced', icon: Award },
+  { value: 100, suffix: '%', label: 'Happy Couples', icon: Heart },
+  { value: 0, text: 'WORLDWIDE', label: 'Coverage Area', icon: Global },
 ]
 
 interface AnimatedCounterProps {
@@ -36,13 +37,13 @@ function AnimatedCounter({ value, suffix, text, duration = 2.5 }: AnimatedCounte
   }, [inView, value, duration, count])
 
   return (
-    <span ref={ref} className="inline-flex items-baseline font-['Cormorant_Garamond',serif]">
+    <span ref={ref} className="inline-flex items-baseline font-display">
       {text ? (
         text
       ) : (
         <>
           <motion.span>{rounded}</motion.span>
-          {suffix && <span className="ml-1 text-[#C9A84C] opacity-60 font-light">{suffix}</span>}
+          {suffix && <span className="ml-1 font-light text-[#D7B779]">{suffix}</span>}
         </>
       )}
     </span>
@@ -54,25 +55,29 @@ export default function Stats() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="stats" className="bg-[#FDFAF6] py-12" ref={ref}>
-      <div className="max-w-6xl mx-auto px-[5%]">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="flex flex-col items-center text-center p-8 border border-[#C9A84C]/10 rounded-sm relative group hover:border-[#C9A84C]/30 transition-all duration-300"
-            >
-              <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-[#C9A84C]/20 to-transparent" />
-              <div className={`font-['Cormorant_Garamond',serif] font-light text-[#1C1410] mb-3 ${s.small ? 'text-2xl tracking-widest mt-2' : 'text-5xl md:text-6xl'}`}>
-                <AnimatedCounter value={s.value} suffix={s.suffix} text={s.text} />
-              </div>
-              <div className="text-[10px] tracking-[0.22em] uppercase text-[#C9A84C] font-normal font-['Jost',sans-serif]">{s.label}</div>
-              <div className="mt-6 w-8 h-px bg-[#C9A84C]/20 group-hover:w-12 transition-all duration-500"></div>
-            </motion.div>
-          ))}
+    <section id="stats" className="bg-[#F7F4EE] px-5 py-10 sm:px-8 sm:py-14" ref={ref}>
+      <div className="mx-auto max-w-7xl">
+        <div className="relative isolate overflow-hidden rounded-2xl bg-[#29241F] shadow-[0_24px_70px_rgba(41,36,31,0.12)]">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#D7B779]/50 to-transparent" />
+          <div className="grid grid-cols-2 divide-x divide-y divide-white/10 lg:grid-cols-4 lg:divide-y-0">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="flex min-h-40 flex-col items-center justify-center px-3 py-8 text-center sm:min-h-48 sm:px-6 sm:py-10"
+              >
+                <s.icon size={22} color="#D7B779" variant="Linear" aria-hidden="true" />
+                <div className={`mt-4 font-display font-light leading-none text-[#F7F4EE] ${s.text ? 'text-3xl tracking-[0.08em] sm:text-4xl' : 'text-5xl sm:text-6xl'}`}>
+                  <AnimatedCounter value={s.value} suffix={s.suffix} text={s.text} />
+                </div>
+                <div className="mt-3 font-sans text-[9px] font-medium uppercase tracking-[0.18em] text-[#F0DEBB]/70 sm:text-[10px]">
+                  {s.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

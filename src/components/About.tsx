@@ -1,71 +1,86 @@
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { ArrowRight2, Heart } from 'iconsax-reactjs'
 import host from '../assets/host.webp'
 
 export default function About() {
   const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
+  const prefersReducedMotion = useReducedMotion()
+  const initialOffset = prefersReducedMotion ? 0 : 24
 
   return (
-    <section id="about" className="relative py-24 px-[5%] bg-[#FDFAF6] overflow-hidden font-['Jost',sans-serif] scroll-mt-32 md:scroll-mt-36" ref={ref}>
-      {/* Background Motifs */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at center, #C9A84C 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-[#C9A84C]/5 blur-[100px] rounded-full pointer-events-none" />
-
-      <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-16 md:gap-24 items-center">
-
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="relative mx-auto w-full max-w-md md:max-w-none"
+    <section
+      id="about"
+      aria-labelledby="about-title"
+      className="scroll-mt-32 overflow-hidden bg-[#F7F4EE] px-5 py-20 font-sans text-[#29241F] sm:px-8 sm:py-28 md:scroll-mt-36"
+      ref={ref}
+    >
+      <div className="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-[0.9fr_1.1fr] md:gap-16 lg:gap-24">
+        <motion.figure
+          initial={{ opacity: prefersReducedMotion ? 1 : 0, y: initialOffset }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="relative mx-auto w-full max-w-125 md:mx-0"
         >
-          <img
-            src={host}
-            alt="Wedding Host"
-            className="relative z-10 w-full h-112 md:h-144 object-cover rounded-sm shadow-xl"
-            loading="lazy"
+          <div className="relative aspect-4/5 overflow-hidden rounded-t-[12rem] rounded-b-2xl bg-[#EAE4D9]">
+            <img
+              src={host}
+              alt="Wedding host at a celebration"
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-[#29241F]/55 via-transparent to-transparent" />
+            <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 text-white sm:p-8">
+              <span className="font-display text-2xl italic sm:text-3xl">Care, culture, connection.</span>
+              <Heart size={20} color="#F0DEBB" variant="Linear" aria-hidden="true" />
+            </figcaption>
+          </div>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-3 rounded-t-[11rem] rounded-b-xl border border-white/40"
           />
-          <div className="absolute -bottom-6 -right-6 w-full h-full border border-[#C9A84C]/30 rounded-sm z-0" />
-        </motion.div>
+        </motion.figure>
 
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          initial={{ opacity: prefersReducedMotion ? 1 : 0, y: initialOffset }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: prefersReducedMotion ? 0 : 0.12, ease: 'easeOut' }}
           className="flex flex-col items-start"
         >
-          <div className="flex items-center gap-[10px] mb-6">
-            <span className="block w-[24px] h-px bg-[#C9A84C]"></span>
-            <p className="text-[10px] font-normal tracking-[0.22em] uppercase text-[#C9A84C]">About Us</p>
-          </div>
+          <p className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.22em] text-[#8C6C4B]">
+            <span className="h-px w-8 bg-current" />
+            About Forever Find
+          </p>
 
-          <h2 className="font-['Cormorant_Garamond',serif] font-light text-[clamp(2.5rem,5vw,3.5rem)] leading-[1.05] text-[#1C1410] mb-6 tracking-[-0.01em]">
-            Sophisticated Alaga <br /> and <em className="italic text-[#C9A84C]">Events</em>
+          <h2 id="about-title" className="max-w-xl font-display text-5xl font-light leading-[1.02] tracking-[-0.025em] sm:text-6xl">
+            Rooted in tradition.
+            <br />
+            <em className="text-[#8C6C4B]">Made for you.</em>
           </h2>
 
-          <p className="text-[13px] font-light tracking-[0.04em] leading-[1.85] text-[#7A7069] mb-5">
+          <p className="mt-7 max-w-xl text-sm leading-7 text-[#29241F]/70 sm:text-base">
             Sophisticated Alaga and Events is an innovative event service business that specializes in creating unforgettable celebrations and meaningful connections.
           </p>
-          <p className="text-[13px] font-light tracking-[0.04em] leading-[1.85] text-[#7A7069] mb-10">
+          <p className="mt-4 max-w-xl text-sm leading-7 text-[#29241F]/70 sm:text-base">
             We offer a unique blend of services, including traditional wedding compering, singles matchmaking, birthday chanting, and surprise birthday celebration planning.
           </p>
 
-          <div className="w-full border border-[#C9A84C]/20 rounded-sm p-8 mb-10 relative bg-[#F7F2EC]">
-            <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#C9A84C]/50 to-transparent" />
-            <h3 className="font-['Cormorant_Garamond',serif] font-light text-[1.6rem] text-[#1C1410] mb-3 italic">Our Mission</h3>
-            <p className="text-[13px] font-light tracking-[0.04em] leading-[1.85] text-[#7A7069]">
-              To celebrate life's milestones with creativity, culture, and connection.
+          <div className="mt-8 border-l border-[#8C6C4B]/50 pl-5">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#8C6C4B]">Our mission</p>
+            <p className="mt-2 max-w-lg font-display text-2xl italic leading-snug text-[#29241F] sm:text-3xl">
+              To celebrate life&apos;s milestones with creativity, culture, and connection.
             </p>
           </div>
 
-          <a href="#booking"
-            className="inline-flex items-center justify-center gap-[8px] bg-[#C9A84C] text-[#100B07] font-medium text-[11px] tracking-[0.16em] uppercase no-underline px-[32px] py-[14px] transition-all duration-200 hover:bg-[#F0DEBB] hover:-translate-y-[2px]"
+          <a
+            href="#booking"
+            className="mt-9 inline-flex items-center gap-3 rounded-full bg-[#29241F] px-6 py-4 text-[11px] font-medium uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#8C6C4B]"
           >
-            Book Consultation
+            Book a consultation
+            <ArrowRight2 size={14} variant="Linear" aria-hidden="true" />
           </a>
         </motion.div>
-
       </div>
     </section>
   )

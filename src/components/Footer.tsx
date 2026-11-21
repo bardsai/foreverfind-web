@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
+import { Instagram, Sms, Whatsapp } from 'iconsax-reactjs'
 import { Link } from 'react-router-dom'
 
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/#about' },
-  // { label: 'Sophisticated Foreverfind', href: '/#app' },
   { label: 'Contact', href: '/#contact' },
   { label: 'Book a Consultation', href: '/#booking' },
 ]
@@ -13,32 +13,17 @@ const socials = [
   {
     label: 'Instagram',
     href: 'https://instagram.com/sophisticated_alaga_',
-    icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-[1.5]">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
-      </svg>
-    ),
+    Icon: Instagram,
   },
   {
     label: 'WhatsApp',
     href: 'https://wa.me/447423243282',
-    icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-[1.5]">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-      </svg>
-    ),
+    Icon: Whatsapp,
   },
   {
     label: 'Email',
     href: 'mailto:foreverfind@gmail.com',
-    icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-[1.5]">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-        <polyline points="22,6 12,13 2,6" />
-      </svg>
-    ),
+    Icon: Sms,
   },
 ]
 
@@ -61,63 +46,64 @@ const downloadLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#100B07] relative overflow-hidden font-['Jost',sans-serif]">
+    <footer className="relative overflow-hidden bg-[#29241F] font-sans">
+      <div className="h-px w-full bg-linear-to-r from-transparent via-[#F3C7AF]/50 to-transparent" />
+      <div className="pointer-events-none absolute -right-36 -top-40 h-96 w-96 rounded-full border border-[#F3C7AF]/[0.07]" />
+      <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full border border-[#F3C7AF]/[0.07]" />
 
-      {/* Decorative gold top border */}
-      <div className="h-px w-full bg-linear-to-r from-transparent via-[#C9A84C]/50 to-transparent" />
-
-      {/* Subtle background texture */}
-      <div
-        className="absolute inset-0 opacity-[0.02] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #C9A84C 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
-        }}
-      />
-
-      <div className="relative max-w-6xl mx-auto px-[5%] pt-20 pb-10">
-
-        {/* Top row: Logo + Nav */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-16 mb-20">
-
-          {/* Brand */}
+      <div className="relative mx-auto max-w-7xl px-5 pb-8 pt-16 sm:px-8 sm:pt-20">
+        <div className="mb-14 grid gap-12 sm:grid-cols-2 lg:mb-16 lg:grid-cols-[1.3fr_0.8fr_1fr] lg:gap-16">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col gap-6 max-w-xs"
+            transition={{ duration: 0.5 }}
+            className="max-w-sm"
           >
-            <a href="/">
-              <img src="/main-logo.webp" alt="Logo" className="h-auto w-48" loading="lazy" />
+            <a href="/" aria-label="Sophisticated Alaga Event home">
+              <img src="/main-logo.webp" alt="Sophisticated Alaga Event" className="h-auto w-44" loading="lazy" />
             </a>
-            <p className="text-[#F0DEBB]/40 text-[13px] font-light leading-relaxed">
+            <p className="mt-6 text-sm leading-7 text-[#F3C7AF]/55">
               An innovative event service business specializing in creating unforgettable celebrations and meaningful connections across the globe.
             </p>
+            <div className="mt-7 flex items-center gap-3">
+              {socials.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#F3C7AF]/20 text-[#F3C7AF]/70 transition-colors hover:border-[#F3C7AF] hover:bg-[#F3C7AF]/10 hover:text-[#F3C7AF]"
+                >
+                  <Icon size={18} variant="Linear" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Nav Links */}
           <motion.nav
-            initial={{ opacity: 0, y: 16 }}
+            aria-label="Footer navigation"
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-col gap-4"
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="flex flex-col items-start gap-4"
           >
-            <p className="text-[10px] tracking-[0.22em] uppercase text-[#C9A84C] mb-2">Quick Links</p>
+            <p className="mb-1 text-[10px] font-medium uppercase tracking-[0.2em] text-[#F3C7AF]">Quick links</p>
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-[#F0DEBB]/60 text-sm hover:text-[#C9A84C] transition-colors duration-200 font-light"
+                className="text-sm text-[#F3C7AF]/65 transition-colors hover:text-white"
               >
                 {link.label}
               </a>
             ))}
-            {/* App download links */}
-            <div className="mt-4 pt-6 border-t border-[#F0DEBB]/5">
-              <p className="text-[10px] tracking-[0.22em] uppercase text-[#C9A84C] mb-4">Get the App</p>
-              <div className="flex gap-6">
+
+            <div className="mt-3 border-t border-[#F3C7AF]/15 pt-5">
+              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.2em] text-[#F3C7AF]">Get the app</p>
+              <div className="flex gap-5">
                 {downloadLinks.map((link) => (
                   <a
                     key={link.platform}
@@ -129,14 +115,14 @@ export default function Footer() {
                     aria-label={`${link.label} (${link.platform})`}
                     title={link.label}
                   >
-                    <span className="w-11 h-11 border border-[#C9A84C]/30 rounded-full flex items-center justify-center group-hover:border-[#C9A84C] group-hover:bg-[#C9A84C]/10 transition-all duration-300">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#F3C7AF]/25 transition-colors group-hover:border-[#F3C7AF] group-hover:bg-[#F3C7AF]/10">
                       <img
                         src={link.icon}
                         alt={link.platform}
-                        className="w-7 h-7 brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                        className="h-6 w-6 brightness-0 invert opacity-65 transition-opacity group-hover:opacity-100"
                       />
                     </span>
-                    <span className="text-[9px] uppercase tracking-[0.2em] text-[#F0DEBB]/50 group-hover:text-[#C9A84C] transition-colors duration-300 font-light whitespace-nowrap">
+                    <span className="whitespace-nowrap text-[9px] uppercase tracking-[0.16em] text-[#F3C7AF]/55 transition-colors group-hover:text-[#F3C7AF]">
                       {link.label}
                     </span>
                   </a>
@@ -145,66 +131,45 @@ export default function Footer() {
             </div>
           </motion.nav>
 
-          {/* Contact snippet */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col gap-4"
+            transition={{ duration: 0.5, delay: 0.16 }}
+            className="flex flex-col items-start gap-4"
           >
-            <p className="text-[10px] tracking-[0.22em] uppercase text-[#C9A84C] mb-2">Contact</p>
-            <a href="tel:+447423243282" className="text-[#F0DEBB]/60 text-sm hover:text-[#C9A84C] transition-colors font-light">
+            <p className="mb-1 text-[10px] font-medium uppercase tracking-[0.2em] text-[#F3C7AF]">Contact</p>
+            <a href="tel:+447423243282" className="text-sm text-[#F3C7AF]/65 transition-colors hover:text-white">
               +44 7423 243282
             </a>
-            <a href="mailto:sophisticatedalaga@gmail.com" className="text-[#F0DEBB]/60 text-sm hover:text-[#C9A84C] transition-colors font-light">
+            <a href="mailto:sophisticatedalaga@gmail.com" className="break-all text-sm text-[#F3C7AF]/65 transition-colors hover:text-white">
               sophisticatedalaga@gmail.com
             </a>
-            <p className="text-[#F0DEBB]/40 text-sm font-light">Nigeria & UK</p>
+            <p className="text-sm text-[#F3C7AF]/45">Nigeria &amp; UK</p>
           </motion.div>
-
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-[#F0DEBB]/5 mb-10" />
-
-        {/* Bottom row */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
-            <p className="text-[#F0DEBB]/20 text-[11px] tracking-wide font-light">
+        <div className="border-t border-[#F3C7AF]/15 pt-6">
+          <div className="flex flex-col items-center justify-between gap-5 sm:flex-row">
+            <p className="text-center text-[11px] leading-5 tracking-wide text-[#F3C7AF]/45 sm:text-left">
               &copy; {new Date().getFullYear()} Sophisticated Alaga Event. Crafted with Cultural Authenticity.
             </p>
-            <Link
-              to="/privacy"
-              className="text-[#F0DEBB]/30 text-[11px] tracking-wide font-light hover:text-[#C9A84C] transition-colors duration-200"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              to="/terms"
-              className="text-[#F0DEBB]/30 text-[11px] tracking-wide font-light hover:text-[#C9A84C] transition-colors duration-200"
-            >
-              Terms of Service
-            </Link>
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex items-center gap-6">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                aria-label={s.label}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#F0DEBB]/30 hover:text-[#C9A84C] transition-colors duration-300"
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+              <Link
+                to="/privacy"
+                className="text-[11px] tracking-wide text-[#F3C7AF]/50 transition-colors hover:text-[#F3C7AF]"
               >
-                {s.icon}
-              </a>
-            ))}
+                Privacy Policy
+              </Link>
+              <Link
+                to="/terms"
+                className="text-[11px] tracking-wide text-[#F3C7AF]/50 transition-colors hover:text-[#F3C7AF]"
+              >
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
-
       </div>
     </footer>
   )
