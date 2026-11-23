@@ -11,8 +11,8 @@ const contacts = [
   },
   {
     label: 'Send a message',
-    value: 'sophisticatedalaga@gmail.com',
-    href: 'mailto:sophisticatedalaga@gmail.com',
+    value: 'sophisticatedforeverfind@gmail.com',
+    href: 'mailto:sophisticatedforeverfind@gmail.com',
     icon: Sms,
   },
   {
